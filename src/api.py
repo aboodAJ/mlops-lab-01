@@ -76,8 +76,7 @@ class PredictRequest(BaseModel):
     request_id : Optional[str]
         Identifiant de corrélation optionnel fourni par le client.
     """
-
-
+    
     tenure_months: int = Field(..., ge=0, le=200)
     num_complaints: int = Field(..., ge=0, le=50)
     avg_session_minutes: float = Field(..., ge=0.0, le=500.0)
