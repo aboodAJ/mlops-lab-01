@@ -20,7 +20,6 @@ un modèle versionné est promu côté registry, puis utilisé par un service
 d’inférence léger.
 """
 
-
 import json
 import time
 from pathlib import Path
