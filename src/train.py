@@ -519,12 +519,19 @@ def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.60) -> None:
 
     timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
 
-    # model_filename = f"churn_model_{version}_{timestamp}.joblib"
-    model_filename = "model.joblib"
+    model_filename = f"churn_model_{version}_{timestamp}.joblib"
+    # model_filename = "model.joblib"
 
     model_path = MODELS_DIR / model_filename
 
     joblib.dump(model_pipeline, model_path)
+
+    import shutil
+
+    joblib.dump(model_pipeline, model_path)
+
+    # Copy to a fixed path for evaluation
+    shutil.copy(model_path, "models/model.joblib")
 
 
 
