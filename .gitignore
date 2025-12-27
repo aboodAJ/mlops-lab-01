@@ -3,7 +3,6 @@ __pycache__/
 *.pyc
 logs/
 models/
-data/*.csv
 
 !data/*.dvc
 !data/.gitkeep
