@@ -62,6 +62,8 @@ REGISTRY_DIR: Final[Path] = ROOT / "registry"
 CURRENT_MODEL_PATH: Final[Path] = REGISTRY_DIR / "current_model.txt"
 METADATA_PATH: Final[Path] = REGISTRY_DIR / "metadata.json"
 
+REPORTS_DIR: Final[Path] = ROOT / "reports"
+METRICS_FILE_PATH: Final[Path] = REPORTS_DIR / "metrics.json"
 
 
 # ---------------------------------------------------------------------------
@@ -315,6 +317,13 @@ def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.70) -> None:
     items.append(entry)
     save_metadata(items)
 
+    # Save metrics for DVC
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    with METRICS_FILE_PATH.open("w", encoding="utf-8") as f:
+        json.dump(metrics, f, indent=2)
+
+    # Logs
+    print("[METRICS]", json.dumps(metrics, indent=2))
 
     # Logs
     print("[METRICS]", json.dumps(metrics, indent=2))
